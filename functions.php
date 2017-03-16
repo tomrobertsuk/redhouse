@@ -43,9 +43,9 @@ function redhouse_setup() {
 	add_theme_support( 'post-thumbnails' );
 
 	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus( array(
+	/*register_nav_menus( array(
 		'menu-1' => esc_html__( 'Primary', 'redhouse' ),
-	) );
+	) );*/
 
 	/*
 	 * Switch default core markup for search form, comment form, and comments
@@ -107,9 +107,11 @@ add_action( 'widgets_init', 'redhouse_widgets_init' );
 function redhouse_scripts() {
 	wp_enqueue_style( 'redhouse-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'redhouse-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	//wp_enqueue_script( 'redhouse-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
 	wp_enqueue_script( 'redhouse-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+
+	wp_enqueue_script( 'redhouse-global', get_template_directory_uri() . '/js/global.js', array(), '20151215', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -120,7 +122,7 @@ add_action( 'wp_enqueue_scripts', 'redhouse_scripts' );
 /**
  * Implement the Custom Header feature.
  */
-require get_template_directory() . '/inc/custom-header.php';
+//require get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
@@ -141,3 +143,9 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+/**
+ * Add image size
+ */
+add_image_size( 'full-width', 1160, 2000 );
+add_image_size( 'half-width', 580, 2000 );
